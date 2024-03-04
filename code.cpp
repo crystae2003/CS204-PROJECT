@@ -56,6 +56,7 @@ int main()
     Sf.push_back("sd");
     Sf.push_back("sh");
     //Addig Sb format
+    //adding U format
 
 
     
