@@ -18,10 +18,6 @@ string funn3(string Mnemonic)
         return "100";
     else if (Mnemonic == "bge") // SB format instruction
         return "101";
-    else if (Mnemonic == "bltu")
-        return "110";
-    else if (Mnemonic == "bgeu")
-        return "111";
     else
         return "000"; // Default case
 }
