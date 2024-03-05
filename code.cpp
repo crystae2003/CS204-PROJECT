@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<string>
 #include<stdlib.h>
 #include<fstream>
 #include "R.h"
@@ -110,7 +111,7 @@ int main()
         string Mnemonic="";
         int j=0;
         //Getting the opcode until space and avoiding space in from of the opcode
-        while((lines[i][j]!=' ' || Mnemonic=="") && j!=lines[i].size())
+        while((lines[i][j]!=' ' || Mnemonic=="") && j<lines[i].size())
         {
             //Checking if the instruction is comment or not
             if(lines[i][j]=='#')
@@ -128,12 +129,12 @@ int main()
         if(Mnemonic==".data:")
         {
             //cout<<"hello\n";
-            string data_type="";
+            
             i++;
             int j=0;
-            while(lines[i]!=".text:" && i!=lines.size())
+            while(lines[i]!=".text:" && i<lines.size())
             {
-                  
+                   string data_type="";
                    while(lines[i][j]!='.')
                    {
                       j++;
@@ -145,6 +146,7 @@ int main()
                       j++;
                    }
                   // cout<<data_type<<"\n";
+                 
                    if(data_type=="asciiz")
                    {
                         //cout<<"o\n";
@@ -171,15 +173,34 @@ int main()
                    }
                    else
                    {
+                    
                         data_func(data_type);
+                        vector<string>arr;
+                        while(lines[i][j]==' ')
+                        j++;
+                        while(j<lines[i].size())
+                        {
+                            string id="";
+                            while(lines[i][j]!=' ' && j<lines[i].size())
+                            {
+                                id=id+lines[i][j];
+                                j++;
+                            }
+                            arr.push_back(id);
+                            j++;
+
+                        }
+                        for(int t=0;t<arr.size();t++)
+                        {
+                            int yt=stoi(arr[t]);
+                            string h=hexa_convert(yt);
+                            output<<"0x"<<dat<<" 0x"<<h<<"\n";
+                            dat+=factor;
+                        }
                    }
-
-
-
-
                 i++;
+                j=0;
             }
-            
 
         }
         else
