@@ -123,17 +123,12 @@ int main()
                 flag++;
                 break;
             }
-            //cout<<Mnemonic<<i<<"\n";
-            //cout<<lines[i].size()<<"\n";
             Mnemonic=Mnemonic+lines[i][j];
             j++;
             
         }
-        //cout<<i<<"\n";
         if(Mnemonic==".data:")
         {
-            //cout<<"hello\n";
-            
             i++;
             int j=0;
             while(lines[i]!=".text:" && i<lines.size())
@@ -149,30 +144,23 @@ int main()
                       data_type+=lines[i][j];
                       j++;
                    }
-                  // cout<<data_type<<"\n";
                  
                    if(data_type=="asciiz")
                    {
-                        //cout<<"o\n";
                         string str="";
                         while(lines[i][j]!='\"')
                         {
-                            //cout<<"hello\n";
                             j++;
                         }
-                        //cout<<"p\n";
                         j++;
                         while(lines[i][j]!='\"')
                         {
                             int y=lines[i][j];
-                            //cout<<y<<"\n";
                             string h=hexa_convert(y);
-                            //cout<<h<<"\n";
                             output<<"0x"<<dat<<" 0x"<<h<<"\n";
                             dat++;
                             j++;
                         }
-                        //cout<<"l\n";
 
                    }
                    else
@@ -233,7 +221,7 @@ int main()
                                 lab=lab+lines[ot][re];
                             }
                         }
-                        cout<<lab<<" "<<PC_2<<"\n";
+                        
                         m_label[lab]=PC_2;
                     }
                     else
