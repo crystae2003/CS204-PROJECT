@@ -63,7 +63,7 @@ string S(string s,int j,string Mnemonic)
     //Adding imm[4:0]
     int imm_num=stoi(imm);
     string imm_complete=dectobin(imm_num,12);
-    string imm1=imm_complete.substr(0,5);//imm1=imm[4:0]
+    string imm1=imm_complete.substr(7,5);//imm1=imm[4:0]
     ans=imm1+ans;
     //Adding func3
     string fun3=funn3(Mnemonic);
@@ -75,7 +75,8 @@ string S(string s,int j,string Mnemonic)
     int rs2_num=stoi(rs2);
     ans=dectobin(rs2_num,5)+ans;
     //Adding imm[11:5]
-    string imm2=imm_complete.substr(5,7);
+    
+    string imm2=imm_complete.substr(0,7);
     ans=imm2+ans;
     //converting binary to hexa
     string hex=bintodec(ans);
