@@ -7,9 +7,11 @@
 #include "S.h"
 #include "U.h"
 #include "SB.h"
-#include "J.h"
+//#include "J.h"
+#include<unordered_map>
 using namespace std;
 int PC=0;
+int PC_2=0;//for label
 int dat=10000000;
 int factor=0;
 //R format
@@ -105,6 +107,8 @@ int main()
 
     int flag=0;
     ofstream output("ans.mc");
+    int counter_2=0;
+    unordered_map<string,int>m_label;
     for(int i=0;i<lines.size();i++)
     {
         string ans="";
@@ -205,6 +209,7 @@ int main()
         }
         else
         {
+            
             //If its a comment
             if(flag)
             {
@@ -212,7 +217,32 @@ int main()
                 continue;
             }
             //If not a comment then proceeding with instruction
+            //Creating map function
+            if(!counter_2)
+            {
+
+                for(int ot=i;ot<lines.size();ot++)
+                {
+                    string lab="";
+                    if(lines[ot][lines[ot].size()-1]==':')
+                    {
+                        for(int re=0;re<lines[ot].size();re++)
+                        {
+                            if(lines[ot][re]!=' ' && lines[ot][re]!=':')
+                            {
+                                lab=lab+lines[ot][re];
+                            }
+                        }
+                        cout<<lab<<" "<<PC_2<<"\n";
+                        m_label[lab]=PC_2;
+                    }
+                    else
+                    PC_2+=4;
+                }
+                counter_2++;
+            }
             //Checking if its R_format Mnemonics
+             
             if(ans=="")
             {
                 for(int k=0;k<Rf.size();k++)
@@ -237,6 +267,7 @@ int main()
                 {
                     if(Mnemonic==If[k])
                     {
+                        
                         ans=I(lines[i],j,Mnemonic);
                         break;
                     }
@@ -276,7 +307,7 @@ int main()
                 {
                     if(Mnemonic==Sbf[k])
                     {
-                        ans=S(lines[i],j,Mnemonic);
+                        ans=SB(lines[i],j,Mnemonic,m_label,PC);
                         break;
                     }
             
@@ -308,13 +339,13 @@ int main()
 
             }
             //Checking if its UJ format Knemonics
-            if(ans=="")
+            /*if(ans=="")
             {
                 for(int k=0;k<Jf.size();k++)
                 {
                     if(Mnemonic==Jf[k])
                     {
-                        ans=S(lines[i],j,Mnemonic);
+                        ans=J(lines[i],j,Mnemonic,m_label,PC);
                         break;
                     }
             
@@ -325,7 +356,7 @@ int main()
                    PC+=4;
                 }
 
-            }
+            }*/
             
         }
         
