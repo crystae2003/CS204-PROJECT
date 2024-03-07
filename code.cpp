@@ -7,12 +7,12 @@
 #include "S.h"
 #include "U.h"
 #include "SB.h"
-//#include "J.h"
+#include "J.h"
 #include<unordered_map>
 using namespace std;
 int PC=0;
 int PC_2=0;//for label
-int dat=10000000;
+unsigned int dat=268435456;
 int factor=0;
 //R format
 vector<string>Rf;
@@ -45,7 +45,26 @@ string hexa_convert(int y)
     {
         int r=y%16;
         y=y/16;
-        an=char(r+'0')+an;
+        if(r>=10)
+        {
+             if(r==10)
+             an='A'+an;
+             else if(r==11)
+             an='B'+an;
+             else if(r==12)
+             an='C'+an;
+             else if(r==13)
+             an='D'+an;
+             else if(r==14)
+             an='E'+an;
+             else if(r==15)
+             an='f'+an;
+        }
+
+        else
+        {
+          an=char(r+'0')+an;
+        }
     }
     return an;
 }
@@ -157,7 +176,7 @@ int main()
                         {
                             int y=lines[i][j];
                             string h=hexa_convert(y);
-                            output<<"0x"<<dat<<" 0x"<<h<<"\n";
+                            output<<"0x"<<hexa_convert(dat)<<" 0x"<<h<<"\n";
                             dat++;
                             j++;
                         }
@@ -186,7 +205,7 @@ int main()
                         {
                             int yt=stoi(arr[t]);
                             string h=hexa_convert(yt);
-                            output<<"0x"<<dat<<" 0x"<<h<<"\n";
+                            output<<"0x"<<hexa_convert(dat)<<" 0x"<<h<<"\n";
                             dat+=factor;
                         }
                    }
@@ -243,7 +262,7 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
             }
@@ -263,7 +282,7 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
             
@@ -283,7 +302,7 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
 
@@ -302,7 +321,7 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
 
@@ -321,13 +340,13 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
 
             }
-            //Checking if its UJ format Knemonics
-            /*if(ans=="")
+            //Checking if its UJ format Mnemonics
+            if(ans=="")
             {
                 for(int k=0;k<Jf.size();k++)
                 {
@@ -340,11 +359,11 @@ int main()
                 }
                 if(ans!="")
                 {
-                   output<<"0x"<<PC<<" "<<ans<<"\n";
+                   output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
 
-            }*/
+            }
             
         }
         
