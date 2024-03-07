@@ -3,7 +3,7 @@
 ## INTRODUCTION :
 This repository contains the source code and documentation for a simple assembler developed in C++. 
 The assembler is designed to translate assembly language code into machine code for a specific architecture.
-It contains one main file, i.e., Code.cpp. It includes file handling and handles the input of assembly code. This file includes all other six header files, 
+It contains one main file, i.e., code.cpp. It includes file handling and handles the input of assembly code. This file includes all other six header files, 
 which were made separately.
 This assembler supports six different instruction formats: I, R, S, SB, J, and UJ.
 
