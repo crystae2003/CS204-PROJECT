@@ -31,9 +31,9 @@ generated in'ans.mc' file.
 
 This Project is contributed by-
   
-## HEMLATA GAUTAM -2022CSB1084
-## SHAIKH ASRA SWALEH-2022CSB1121
-## SMRITI GUPTA-2022CSB1128
+## Hemlata Gautam -2022CSB1084
+## Shaikh Asra Swaleh-2022CSB1121
+## Smriti Gupta -2022CSB1128
    
    
 
