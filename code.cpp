@@ -41,7 +41,10 @@ void data_func(string data_type)
 //Function to convert PC into hexdecimal
 string hexa_convert(int y)
 {
+    int ty=0;
     string an="";
+    if(y==0)
+    ty++;
     while(y>0)
     {
         int r=y%16;
@@ -67,6 +70,8 @@ string hexa_convert(int y)
           an=char(r+'0')+an;
         }
     }
+    if(ty)
+    return an="0";
     return an;
 }
 
@@ -379,6 +384,7 @@ int main()
         
 
     }
+    output<<"0x"<<hexa_convert(PC)<<" Termination of code"<<"\n";
     
 
 
