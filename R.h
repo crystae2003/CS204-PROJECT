@@ -6,7 +6,7 @@ using namespace std;
 //converting decimal to binary
 string dectobin(int n){
     string bin="";
-    while(n!=0)
+    while(n>0)
     {
         char c=char((n%2)+48);
          bin=c+bin;
@@ -20,28 +20,28 @@ string dectobin(int n){
 
 }
 //FUNC3 FOR INSTRUCTION
-string func3(string opcode)
+string func3(string Mnemonic)
 {
-    if(opcode=="add" || opcode=="sub"|| opcode=="mul")
+    if(Mnemonic=="add" || Mnemonic=="sub"|| Mnemonic=="mul")
     return "000";
-    else if(opcode=="sll")
+    else if(Mnemonic=="sll")
     return "001";
-    else if(opcode=="slt")
+    else if(Mnemonic=="slt")
     return "010";
-    else if(opcode=="xor" || opcode=="div")
+    else if(Mnemonic=="xor" || Mnemonic=="div")
     return "100";
-    else if(opcode=="srl" || opcode=="sra")
+    else if(Mnemonic=="srl" || Mnemonic=="sra")
     return "101";
-    else if(opcode=="or" || opcode=="rem")
+    else if(Mnemonic=="or" || Mnemonic=="rem")
     return "110";
     else 
     return "111";
 }
-string func7(string opcode)
+string func7(string Mnemonic)
 {
-    if(opcode=="sub" || opcode=="sra")
+    if(Mnemonic=="sub" || Mnemonic=="sra")
     return "0100000";
-    else if(opcode=="mul" || opcode=="div" || opcode=="rem")
+    else if(Mnemonic=="mul" || Mnemonic=="div" || Mnemonic=="rem")
     return "0000001";
     else
     return "0000000";
@@ -71,9 +71,10 @@ string bintodec(string ans)
             ru=ru+c;
         }
     }
+    ru="0x"+ru;
     return ru;
 }
-string R(string s,int j,string opcode)
+string R(string s,int j,string Mnemonic)
 {
       string rd="";
       string rs1="";
@@ -124,7 +125,7 @@ string R(string s,int j,string opcode)
       int rd_num=stoi(rd);
       ans=dectobin(rd_num)+ans;
       //Getting func3 and adding into ans
-      string func33=func3(opcode);
+      string func33=func3(Mnemonic);
       ans=func33+ans;
       //Getting rs1 and rs2 and adding into ans
       int rs1_num=stoi(rs1);
@@ -132,7 +133,7 @@ string R(string s,int j,string opcode)
       int rs2_num=stoi(rs2);
       ans=dectobin(rs2_num)+ans;
       //Getting func7 and adding into ans
-      string func77=func7(opcode);
+      string func77=func7(Mnemonic);
       ans=func77+ans;
       //converting binary to hexa
       string hex=bintodec(ans);
