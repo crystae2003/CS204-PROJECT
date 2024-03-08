@@ -1,4 +1,3 @@
-
 #ifndef SB_H
 #define SB_H
 #include "R.h"
@@ -7,15 +6,15 @@
 #include<string>
 #include<unordered_map>
 using namespace std;
-string dtb(int n,int sign){
+string dtb(int n,int sign,int size){
     string bin="";
-    while(n!=0)
+    while(n>0)
     {
         char c=char((n%2)+48);
          bin=c+bin;
          n=n/2;
     }
-    while(bin.size()!=21)
+    while(bin.size()!=size)
     {
         if(sign==-1)
         bin='1'+bin;
@@ -39,6 +38,7 @@ string fu3(string Mnemonic)
 }
 string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
 {
+    
     string rs1="";
     string rs2="";
     string label="";
@@ -71,6 +71,10 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
         if(flag==2)
         {
             i++;
+            while(s[i]==' ')
+            {
+                 i++;
+            }
             while(i!=s.size() && s[i]!=' ')
             {
                 label=label+s[i];
@@ -87,12 +91,14 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
       //Adding immediate
       string imm;
       if(offset<0)
-      imm=dtb(abs(offset),-1);
+      imm=si(two(dec2bin(abs(offset))),12)+ans;
       else
-      imm=dtb(offset,1);
-      char eleven=imm[9];
+      imm=dtb(offset,1,13);
+      //Adding imm[11]
+      char eleven=imm[1];
       ans=eleven+ans;
-      string huu=imm.substr(16,4);
+      //Adding imm[4:1]
+      string huu=imm.substr(8,4);
       ans=huu+ans;
       //Adding func3
       huu=fu3(Mnemonic);
@@ -104,9 +110,9 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
       int rs2_num=stoi(rs2);
       ans=dectobin(rs2_num)+ans;
       //Adding remaining immediate
-      huu=imm.substr(10,6);
+      huu=imm.substr(2,6);
       ans=huu+ans;
-      char twelve=imm[8];
+      char twelve=imm[0];
       ans=twelve+ans;
       //converting binary to hexa
       string hex=bintodec(ans);
