@@ -38,6 +38,7 @@ void data_func(string data_type)
     else 
     factor=8;
 }
+//Function to convert PC into hexdecimal
 string hexa_convert(int y)
 {
     string an="";
@@ -125,8 +126,10 @@ int main()
 //END of inserting Mnemonics
 
     int flag=0;
+    //Creating output file
     ofstream output("ans.mc");
     int counter_2=0;
+    //Initializing map for label
     unordered_map<string,int>m_label;
     for(int i=0;i<lines.size();i++)
     {
@@ -146,11 +149,18 @@ int main()
             j++;
             
         }
-        if(Mnemonic==".data:")
+        //Checking if its a comment
+         if(flag)
+        { 
+            flag=0;
+            continue;
+        }
+        //If not a comment then proceeding with instruction
+        if(Mnemonic==".data:" )
         {
             i++;
             int j=0;
-            while(lines[i]!=".text:" && i<lines.size())
+            while((lines[i]!=".text:") && i<lines.size())
             {
                    string data_type="";
                    while(lines[i][j]!='.')
@@ -217,17 +227,9 @@ int main()
         else
         {
             
-            //If its a comment
-            if(flag)
-            {
-                flag=0;
-                continue;
-            }
-            //If not a comment then proceeding with instruction
-            //Creating map function
+            //Creating map function for labels
             if(!counter_2)
             {
-
                 for(int ot=i;ot<lines.size();ot++)
                 {
                     string lab="";
@@ -235,8 +237,10 @@ int main()
                     {
                         for(int re=0;re<lines[ot].size();re++)
                         {
-                            if(lines[ot][re]!=' ' && lines[ot][re]!=':')
+                            if(lines[ot][re]!=' ' && lines[ot][re]!=':' )
                             {
+                                if(lines[ot][re]=='#')
+                                break;
                                 lab=lab+lines[ot][re];
                             }
                         }
@@ -244,12 +248,21 @@ int main()
                         m_label[lab]=PC_2;
                     }
                     else
-                    PC_2+=4;
+                    {
+                        int flag_32=0;
+                        for(int yu=0;yu<lines[ot].size();yu++)
+                        {
+                            if(lines[ot][yu]=='#')
+                            flag_32++;
+                        }
+                        if(!flag_32)
+                        PC_2+=4;
+                       
+                    }
                 }
                 counter_2++;
             }
             //Checking if its R_format Mnemonics
-             
             if(ans=="")
             {
                 for(int k=0;k<Rf.size();k++)
@@ -274,7 +287,6 @@ int main()
                 {
                     if(Mnemonic==If[k])
                     {
-                        
                         ans=I(lines[i],j,Mnemonic);
                         break;
                     }
@@ -285,8 +297,6 @@ int main()
                    output<<"0x"<<hexa_convert(PC)<<" "<<ans<<"\n";
                    PC+=4;
                 }
-            
- 
             }
             //Checking if its S format Mnemonic
             if(ans=="")
