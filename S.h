@@ -39,7 +39,7 @@ string S(string s,int j,string Mnemonic)
         {
             while(s[i]!='(')
             {
-                imm=s[i]+imm;
+                imm=imm+s[i];
                 i++;
             }
             flag++;
@@ -62,20 +62,24 @@ string S(string s,int j,string Mnemonic)
     ans=ans+"0100011";
     //Adding imm[4:0]
     int imm_num=stoi(imm);
-    string imm_complete=dectobin(imm_num,12);
-    string imm1=imm_complete.substr(7,5);//imm1=imm[4:0]
+    string imm_complete;
+    if(imm_num>=0)
+    imm_complete=dectobin(imm_num,12,1);
+    else
+    imm_complete=si(two(dec2bin(abs(imm_num))),11)+ans;
+    //imm1=imm[4:0]
+    string imm1=imm_complete.substr(7,5);
     ans=imm1+ans;
     //Adding func3
     string fun3=funn3(Mnemonic);
     ans=fun3+ans;
     //Adding rs1
     int rs1_num=stoi(rs1);
-    ans=dectobin(rs1_num,5)+ans;
+    ans=dectobin(rs1_num,5,1)+ans;
     //Adding rs2
     int rs2_num=stoi(rs2);
-    ans=dectobin(rs2_num,5)+ans;
+    ans=dectobin(rs2_num,5,1)+ans;
     //Adding imm[11:5]
-    
     string imm2=imm_complete.substr(0,7);
     ans=imm2+ans;
     //converting binary to hexa
