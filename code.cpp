@@ -59,7 +59,7 @@ string hexa_convert(int y)
              else if(r==14)
              an='E'+an;
              else if(r==15)
-             an='f'+an;
+             an='F'+an;
         }
 
         else
