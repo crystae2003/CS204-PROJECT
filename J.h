@@ -30,6 +30,10 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
            if(flag==1)
            {
                i++;
+               while(s[i]==' ')
+               {
+                 i++;
+               }
                while(i!=s.size() && s[i]!=' ')
                 {
                     label=label+s[i];
@@ -39,19 +43,23 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
                 break;
            }
         }
+       
         //Adding opcode
         ans=ans+"1101111";
         //Adding ra
         int ra_num=stoi(ra);
         ans=dectobin(ra_num)+ans;
-        //Adding imm
+        //Calculating offset for label
         int pc_2=m_label[label];
         int offset=pc_2-PC;
+        //Adding imm
         string imm;
         if(offset<0)
-        imm=dtb(abs(offset),-1);
+        {
+            imm=si(two(dec2bin(abs(offset))),20)+ans;
+        }
         else
-        imm=dtb(offset,1);
+        imm=dtb(offset,1,21);
         //imm[19:12]
         string h=imm.substr(1,8);
         ans=h+ans;
@@ -67,6 +75,6 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
         //converting binary to hexa
         string hex=bintodec(ans);
        //returning in hexadecimal
-       return hex;
+        return hex;
 }
 #endif
