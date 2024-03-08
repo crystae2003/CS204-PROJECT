@@ -4,9 +4,10 @@
 #include<string>
 #include "R.h"
 using namespace std;
-string dectobin(int n,int size){
+
+string dectobin(int n,int size,int sign){
     string bin="";
-    while(n!=0)
+    while(n>0)
     {
         char c=char((n%2)+48);
          bin=c+bin;
@@ -14,10 +15,58 @@ string dectobin(int n,int size){
     }
     while(bin.size()!=size)
     {
+        if(sign==1)
         bin='0'+bin;
+        else
+        bin='1'+bin;
     }
     return bin;
 
+}
+string dec2bin(int n)
+{
+    string bin="";
+    while(n>0)
+    {
+        char c=char((n%2)+48);
+         bin=c+bin;
+         n=n/2;
+    }
+    return bin;
+}
+char flip(char c) {return (c == '0')? '1': '0';} 
+string two(string m)
+{
+    int n = m.length(); 
+    int i; 
+  
+    string ones, twos; 
+    ones = twos = ""; 
+  
+    //For ones complement flip every bit 
+    for (i = 0; i < n; i++) 
+    ones += flip(m[i]); 
+  
+    twos = ones; 
+    for (i = n - 1; i >= 0; i--) 
+    { 
+        if (ones[i] == '1') 
+            twos[i] = '0'; 
+        else
+        { 
+            twos[i] = '1'; 
+            break; 
+        } 
+    } 
+    if (i == -1) 
+    twos = '1' + twos; 
+    return twos;
+}
+string si(string m,int size)
+{
+     for(int i=m.size();i<=size;i++)
+     m='1'+m;
+     return m;
 }
 string func3I(string Mnemonic)
 {
@@ -43,7 +92,7 @@ string I(string s,int j,string Mnemonic)
     string imm="";
     int flag=0;
     //Extracting rd,rs1,imm fields
-    if(Mnemonic=="addi" || Mnemonic=="andi" || Mnemonic=="ori")
+    if(Mnemonic=="addi" || Mnemonic=="andi" || Mnemonic=="ori" || Mnemonic=="jalr")
     {
         for(int i=j;i<s.size();i++)
         {
@@ -72,6 +121,10 @@ string I(string s,int j,string Mnemonic)
            if(flag==2)
            {
                i++;
+               while(s[i]==' ')
+               {
+                 i++;
+               }
                while(i!=s.size() && s[i]!=' ')
                 {
                     imm=imm+s[i];
@@ -102,7 +155,7 @@ string I(string s,int j,string Mnemonic)
            {
               while(s[i]!='(')
               {
-                  imm=s[i]+imm;
+                  imm=imm+s[i];
                   i++;
               }
               flag++;
@@ -134,16 +187,23 @@ string I(string s,int j,string Mnemonic)
     ans+="0000011";
     //Adding rd
     int rd_num=stoi(rd);
-    ans=dectobin(rd_num,5)+ans;
+    ans=dectobin(rd_num)+ans;
     //Adding func3
     string func33=func3I(Mnemonic);
     ans=func33+ans;
     //Adding rs1
     int rs1_num=stoi(rs1);
-    ans=dectobin(rs1_num,5)+ans;
+    ans=dectobin(rs1_num)+ans;
     //Adding immediate
     int imm_num=stoi(imm);
-    ans=dectobin(imm_num,12)+ans;
+    if(imm_num>=0)
+    {  
+        ans=dectobin(imm_num,12,1)+ans;
+    }
+    else
+    {
+        ans=si(two(dec2bin(abs(imm_num))),11)+ans;
+    }
     //converting binary to hexa
     string hex=bintodec(ans);
     //returning in hexadecimal
