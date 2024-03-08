@@ -32,6 +32,10 @@ string U(string s,int j,string Mnemonic)
            if(flag==1)
            {
                i++;
+               while(s[i]==' ')
+               {
+                 i++;
+               }
                while(i!=s.size() && s[i]!=' ')
                 {
                     imm=imm+s[i];
@@ -49,10 +53,10 @@ string U(string s,int j,string Mnemonic)
     else ans+="0110111";
     //Adding rd
     int rd_num=stoi(rd);
-    ans=dectobin(rd_num,5)+ans;
+    ans=dectobin(rd_num,5,1)+ans;
     //Adding immediate
     int imm_num=stoi(imm);
-    ans=dectobin(imm_num,20)+ans;
+    ans=dectobin(imm_num,20,1)+ans;
     //converting binary to hexa
     string hex=bintodec(ans);
     //returning in hexadecimal
