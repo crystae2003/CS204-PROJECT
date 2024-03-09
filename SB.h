@@ -32,8 +32,12 @@ string fu3(string Mnemonic)
     return "001";
     else if(Mnemonic=="blt")
     return "100";
-    else
+    else if(Mnemonic=="bge")
     return "101";
+    else {
+        printf("invalid instruction");
+        exit(0);
+    }
 
 }
 string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
@@ -46,6 +50,9 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
     string ans="";
     for(int i=j;i<s.size();i++)
     {
+        while (s[i]==' '){
+            i++;
+        }
         if(s[i]=='x')
         {
             i++;
@@ -57,6 +64,9 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
                     i++;
                 }
                 flag++;
+                while (s[i]==' '){
+                    i++;
+                }
             }
             else if(flag==1)
             {
@@ -66,6 +76,9 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
                     i++; 
                 }
                 flag++;
+                while (s[i]==' '){
+                    i++;
+                }
             }
         }
         if(flag==2)
@@ -82,6 +95,7 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
             }
             flag=0;
             break;
+            //here the compiler terminates the instruction as soon as it gets the required values
         }
       }
       int pc_2=m_label[label];
@@ -105,9 +119,17 @@ string SB(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC
       ans=huu+ans;
       //Adding rs1
       int rs1_num=stoi(rs1);
+      if(rs1_num >31 || rs1_num <0){
+          printf("register not found");
+          exit(0);
+      }
       ans=dectobin(rs1_num)+ans;
       //Adding rs2
       int rs2_num=stoi(rs2);
+      if(rs2_num >31 || rs2_num <0){
+          printf("register not found");
+          exit(0);
+      }
       ans=dectobin(rs2_num)+ans;
       //Adding remaining immediate
       huu=imm.substr(2,6);
