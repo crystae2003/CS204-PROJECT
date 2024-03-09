@@ -216,7 +216,7 @@ string I(string s,int j,string Mnemonic)
     int rs1_num=stoi(rs1);
     if (rs1_num>31){
         printf("register not found");
-        exit();
+        exit(0);
     }
     ans=dectobin(rs1_num)+ans;
     //Adding immediate
