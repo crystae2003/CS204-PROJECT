@@ -179,7 +179,7 @@ int main()
                       j++;
                    }
                  
-                   if(data_type=="asciiz")
+                   if(data_type=="asciiz"|| data_type == "string")
                    {
                         string str="";
                         while(lines[i][j]!='\"')
