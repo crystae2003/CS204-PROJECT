@@ -204,6 +204,10 @@ string I(string s,int j,string Mnemonic)
     ans+="0000011";
     //Adding rd
     int rd_num=stoi(rd);
+    if (rd_num>31){
+        printf("register not found");
+        exit();
+    }
     ans=dectobin(rd_num)+ans;
     //Adding func3
     string func33=func3I(Mnemonic);
