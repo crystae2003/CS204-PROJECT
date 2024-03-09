@@ -96,6 +96,10 @@ string I(string s,int j,string Mnemonic)
     {
         for(int i=j;i<s.size();i++)
         {
+            while(s[i]==' ')
+               {
+                 i++;
+               }
            if(s[i]=='x')
            {
               i++;
@@ -110,6 +114,10 @@ string I(string s,int j,string Mnemonic)
                 }
                 else if(flag==1)
                {
+                   while(s[i]==' ')
+                   {
+                     i++;
+                   }
                   while((s[i]!=',' && s[i]!=' ') ||rs1=="")
                   {
                       rs1=rs1+s[i];
@@ -139,6 +147,10 @@ string I(string s,int j,string Mnemonic)
     {
         for(int i=j;i<s.size();i++)
         {
+            while(s[i]==' ')
+               {
+                 i++;
+               }
             if(s[i]=='x' && flag==0)
            {
               i++;
@@ -155,10 +167,15 @@ string I(string s,int j,string Mnemonic)
            {
               while(s[i]!='(')
               {
+                  //taking offset
                   imm=imm+s[i];
                   i++;
               }
               flag++;
+               while(s[i]==' ')
+               {
+                 i++;
+               }
            }
            else if(flag==2 && s[i]!=' ')
            {
@@ -170,8 +187,8 @@ string I(string s,int j,string Mnemonic)
                       rs1=rs1+s[i];
                       i++;
                   }
+                   //here even if there is something after the complpetion of required instruction, the compiler ignores it
                   break;
-
                }
            }
 
