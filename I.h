@@ -80,8 +80,12 @@ string func3I(string Mnemonic)
     return "011";
     else if(Mnemonic=="andi")
     return "111";
-    else
+    else if (Mnemonic=="ori")
     return "110";
+    else {
+        printf("invalid instruction");
+        exit(0);
+    }
 }
 
 string I(string s,int j,string Mnemonic)
