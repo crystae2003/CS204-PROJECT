@@ -13,8 +13,12 @@ string funn3(string Mnemonics)
     return "010";
     else if(Mnemonics=="sh")
     return "001";
-    else 
+    else if(Mnemonics=="sb")
     return "000";
+    else {
+        printf("invalid instruction");
+        exit(0);
+    }
 }
 string S(string s,int j,string Mnemonic)
 {
@@ -25,6 +29,9 @@ string S(string s,int j,string Mnemonic)
     int flag=0;
     for(int i=j;i<s.size();i++)
     {
+        while (s[i]==" "){
+            i++;
+        }
         if(s[i]=='x' && flag==0)
         {
             i++;
@@ -34,6 +41,9 @@ string S(string s,int j,string Mnemonic)
                 i++;
             }
                 flag++;
+                    while (s[i]==" "){
+                        i++;
+                    }
         }
         else if(flag==1 && s[i]!=' ')
         {
@@ -43,6 +53,9 @@ string S(string s,int j,string Mnemonic)
                 i++;
             }
             flag++;
+                    while (s[i]==" "){
+                        i++;
+                    }
         }
         else if(flag==2 && s[i]!=' ')
         {
@@ -55,6 +68,7 @@ string S(string s,int j,string Mnemonic)
                     i++;
                 }
                 break;
+                //here again the compiler terminates the line once it gets required values from the instruction
             }
         }
     }
@@ -75,9 +89,17 @@ string S(string s,int j,string Mnemonic)
     ans=fun3+ans;
     //Adding rs1
     int rs1_num=stoi(rs1);
+    if (rs1_num >31 || rs1_num<0){
+        printf("register not found");
+        exit(0);
+    }
     ans=dectobin(rs1_num,5,1)+ans;
     //Adding rs2
     int rs2_num=stoi(rs2);
+    if (rs2_num >31 || rs2_num<0){
+        printf("register not found");
+        exit(0);
+    }
     ans=dectobin(rs2_num,5,1)+ans;
     //Adding imm[11:5]
     string imm2=imm_complete.substr(0,7);
