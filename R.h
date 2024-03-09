@@ -34,8 +34,12 @@ string func3(string Mnemonic)
     return "101";
     else if(Mnemonic=="or" || Mnemonic=="rem")
     return "110";
-    else 
+    else if (Mnemonic=="and")
     return "111";
+    else {
+        printf("invalid instruction");
+        exit(0);
+    }
 }
 string func7(string Mnemonic)
 {
@@ -46,6 +50,7 @@ string func7(string Mnemonic)
     else
     return "0000000";
 }
+//gives hexadecimal of bin through dec     bin->dec->hex
 string bintodec(string ans)
 {
     string ru="";
