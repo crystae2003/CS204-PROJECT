@@ -208,7 +208,7 @@ string I(string s,int j,string Mnemonic)
     ans+="0000011";
     //Adding rd
     int rd_num=stoi(rd);
-    if (rd_num>31){
+    if (rd_num>31 || rd_num<0){
         printf("register not found");
         exit();
     }
@@ -218,7 +218,7 @@ string I(string s,int j,string Mnemonic)
     ans=func33+ans;
     //Adding rs1
     int rs1_num=stoi(rs1);
-    if (rs1_num>31){
+    if (rs1_num>31 || rs1_num<0){
         printf("register not found");
         exit(0);
     }
