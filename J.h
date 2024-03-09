@@ -18,7 +18,8 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
            {
               i++;
                if(flag==0)
-                {
+                { 
+                  while(s[i]==" ") i++;
                   while(s[i]!=',' && s[i]!=' ')
                   {
                       ra=ra+s[i];
@@ -48,6 +49,10 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
         ans=ans+"1101111";
         //Adding ra
         int ra_num=stoi(ra);
+        if (ra_num>31) {
+                printf("register not found");
+                exit(0);
+        }
         ans=dectobin(ra_num)+ans;
         //Calculating offset for label
         int pc_2=m_label[label];
