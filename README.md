@@ -36,7 +36,7 @@ To verify your machine code , you can use "Venus Simulator" and match it with th
 3. Label should be in different line than instruction.
 4. There would not be any instructions in front of a label; instructions should be on the next line after the label.
 5. The instruction can have spaces in between registers.
-6. If any unspecified instruction is given, the code will terminate with the error message.
+6. If any unspecified instruction is given, the code will ignore that instruction.
   This Project is contributed by-
   
 ## Hemlata Gautam -2022CSB1084
