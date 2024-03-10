@@ -161,12 +161,12 @@ int main()
             continue;
         }
         //If not a comment then proceeding with instruction
-        if(Mnemonic==".data" )
+        if(Mnemonic==".data:" )
         {
             i++;
             //the assumption that .data is in a separate line and anything following it is on the next line
             int j=0;
-            while((lines[i]!=".text") && i<lines.size()) //the assumption that while starting the text segment it should start exactly with the line ".text"
+            while((lines[i]!=".text:") && i<lines.size()) //the assumption that while starting the text segment it should start exactly with the line ".text"
                                                           //meaning no other char before or after this exact word
             {
                    string data_type="";
@@ -382,10 +382,7 @@ int main()
 
             }
             
-            if (ans==""){
-                printf("invalid instruction");
-                exit(0);
-            }
+            
         }
         
 
