@@ -16,9 +16,7 @@ string U(string s,int j,string Mnemonic)
     {
         for(int i=j;i<s.size();i++)
         {
-            while (s[i]==' '){
-                i++;
-            }
+            
            if(s[i]=='x')
            {
               i++;
@@ -30,9 +28,7 @@ string U(string s,int j,string Mnemonic)
                       i++;
                   }
                   flag++;
-                  while (s[i]==' '){
-                        i++;
-                  }  
+                    
                 }
            }
            if(flag==1)
@@ -53,20 +49,14 @@ string U(string s,int j,string Mnemonic)
            }
       }
     }
-    else{
-        printf("invalid instruction");
-        exit(0);
-    }    
+        
     //Adding opcode
     if(Mnemonic=="auipc")
     ans=ans+"0010111";
     else ans+="0110111";
     //Adding rd
     int rd_num=stoi(rd);
-    if (rd_num >31 || rd_num <0){
-        printf("register not found");
-        exit(0);
-    }
+    
     ans=dectobin(rd_num,5,1)+ans;
     //Adding immediate
     int imm_num=stoi(imm);
