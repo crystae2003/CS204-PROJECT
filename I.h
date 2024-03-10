@@ -80,12 +80,9 @@ string func3I(string Mnemonic)
     return "011";
     else if(Mnemonic=="andi")
     return "111";
-    else if (Mnemonic=="ori")
+    else 
     return "110";
-    else {
-        printf("invalid instruction");
-        exit(0);
-    }
+   
 }
 
 string I(string s,int j,string Mnemonic)
@@ -208,20 +205,14 @@ string I(string s,int j,string Mnemonic)
     ans+="0000011";
     //Adding rd
     int rd_num=stoi(rd);
-    if (rd_num>31 || rd_num<0){
-        printf("register not found");
-        exit();
-    }
+
     ans=dectobin(rd_num)+ans;
     //Adding func3
     string func33=func3I(Mnemonic);
     ans=func33+ans;
     //Adding rs1
     int rs1_num=stoi(rs1);
-    if (rs1_num>31 || rs1_num<0){
-        printf("register not found");
-        exit(0);
-    }
+
     ans=dectobin(rs1_num)+ans;
     //Adding immediate
     int imm_num=stoi(imm);
