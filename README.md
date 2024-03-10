@@ -36,9 +36,6 @@ To verify your machine code , you can use "Venus Simulator" and match it with th
 3. Label should be in different line than instruction.
 4. There would not be any instructions in front of a label; instructions should be on the next line after the label.
 5. Comment should also be in separate line than instruction.
-6. The code assumes that the instruction is terminated once it gets its required values, for e.g. if add x3,x4,x5,x6 is given as an instruction, the compiler will read only till x5.
-7. There can be spaces between the instruction arguments, the compiler will skip spaces and find the next argument, for e.g. add x3 ,     x4      , x5   is a valid instruction.
-8. In addition to .asciiz, we have also included .string assembler directive.
 This Project is contributed by-
   
 ## Hemlata Gautam -2022CSB1084
