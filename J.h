@@ -19,7 +19,7 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
               i++;
                if(flag==0)
                 { 
-                  while(s[i]==" ") i++;
+                  while(s[i]== ' ') i++;
                   while(s[i]!=',' && s[i]!=' ')
                   {
                       ra=ra+s[i];
