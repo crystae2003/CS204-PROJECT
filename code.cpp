@@ -370,10 +370,6 @@ int main()
                     PC += 4;
                 }
             }
-            if (ans==""){
-                printf("invalid instruction");
-                exit(0);
-            }
         }
     }
     output << "0x" << hexa_convert(PC) << " Termination of code";
