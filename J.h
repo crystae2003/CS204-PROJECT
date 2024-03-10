@@ -49,10 +49,6 @@ string J(string s,int j,string Mnemonic,unordered_map<string,int>m_label,int PC)
         ans=ans+"1101111";
         //Adding ra
         int ra_num=stoi(ra);
-        if (ra_num>31 || ra_num<0) {
-                printf("register not found");
-                exit(0);
-        }
         ans=dectobin(ra_num)+ans;
         //Calculating offset for label
         int pc_2=m_label[label];
