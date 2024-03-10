@@ -34,12 +34,9 @@ string func3(string Mnemonic)
     return "101";
     else if(Mnemonic=="or" || Mnemonic=="rem")
     return "110";
-    else if (Mnemonic=="and")
+    else
     return "111";
-    else {
-        printf("invalid instruction");
-        exit(0);
-    }
+    
 }
 string func7(string Mnemonic)
 {
