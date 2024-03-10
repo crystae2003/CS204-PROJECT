@@ -85,9 +85,7 @@ string R(string s,int j,string Mnemonic)
       string ans="";
       for(int i=j;i<s.size();i++)
       {
-          while(s[i]==' '){
-              i++;
-          }
+          
          if(s[i]=='x')
          {
             i++;
@@ -102,9 +100,6 @@ string R(string s,int j,string Mnemonic)
             }
             else if(flag==1)
             {
-                while(s[i]==' '){
-                    i++;
-                }
                 while((s[i]!=',' && s[i]!=' ') ||rs1=="")
                 {
                     rs1=rs1+s[i];
@@ -115,9 +110,6 @@ string R(string s,int j,string Mnemonic)
             }
             else if(flag==2)
             {
-                while(s[i]==' '){ 
-                    i++;
-                }
                 while(i!=s.size() && s[i]!=' ')
                 {
                     rs2=rs2+s[i];
@@ -145,16 +137,8 @@ string R(string s,int j,string Mnemonic)
       ans=func33+ans;
       //Getting rs1 and rs2 and adding into ans
       int rs1_num=stoi(rs1);
-      if (rs1_num >31 || rs1_num<0) {
-          printf("register not found");
-          exit(0);
-      }
       ans=dectobin(rs1_num)+ans;
       int rs2_num=stoi(rs2);
-      if (rs2_num >31 || rs2_num<0) {
-          printf("register not found");
-          exit(0);
-      }
       ans=dectobin(rs2_num)+ans;
       //Getting func7 and adding into ans
       string func77=func7(Mnemonic);
